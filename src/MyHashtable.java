@@ -1,26 +1,33 @@
-public class MyHashtable {
+public class MyHashTable {
 
     private MyPair[] hashArr;
-    private int add = 0;
     private double count = 0;
-    private double loadFactor = 0.75;
+    private double loadFactor = 0.5;
+    private double expansivity = 2;
+    private static final int DEFAULT_CAPACITY = 20;
 
-    public MyHashtable() {
-        hashArr = new MyPair[20];
+    public MyHashTable() {
+        hashArr = new MyPair[DEFAULT_CAPACITY];
     }
 
-    public MyHashtable(double loadFactor) {
-        hashArr = new MyPair[20];
+    public MyHashTable(double loadFactor) {
+        hashArr = new MyPair[DEFAULT_CAPACITY];
         this.loadFactor = loadFactor;
     }
 
-    public MyHashtable(int capacity) {
+    public MyHashTable(int capacity) {
         hashArr = new MyPair[capacity];
     }
 
-    public MyHashtable(int capacity, double loadFactor) {
+    public MyHashTable(int capacity, double loadFactor) {
         hashArr = new MyPair[capacity];
         this.loadFactor = loadFactor;
+    }
+
+    public MyHashTable(int capacity, double loadFactor, double expansivity) {
+        hashArr = new MyPair[capacity];
+        this.loadFactor = loadFactor;
+        this.expansivity = expansivity;
     }
 
     public MyPair[] getPairs() {
@@ -33,18 +40,16 @@ public class MyHashtable {
     }
 
     public MyPair get(int key) {
-        try {
-            while (true)
-                if (hashArr[(key + add) % hashArr.length].first == key) {
-                    return hashArr[(key + add) % hashArr.length];
-                } else if (add++ == hashArr.length) return null;
-        } finally {
-            add = 0;
-        }
+        int add = 0;
+        while (true)
+            if (hashArr[(key + add) % hashArr.length].first == key) {
+                return hashArr[(key + add) % hashArr.length];
+            } else if (add++ == hashArr.length) return null;
     }
 
     public void add(int key) {
-        if (count / hashArr.length >= loadFactor) newHash();
+        if (count / hashArr.length >= loadFactor) grow();
+        int add = 0;
         while (true) {
             if (hashArr[(key + add) % hashArr.length] == null) {
                 hashArr[(key + add) % hashArr.length] = new MyPair(key, 1);
@@ -57,11 +62,11 @@ public class MyHashtable {
             }
             add++;
         }
-        add = 0;
     }
 
     public void add(MyPair newMP) {
-        if (count / hashArr.length >= loadFactor) newHash();
+        if (count / hashArr.length >= loadFactor) grow();
+        int add = 0;
         while (true) {
             if (hashArr[(newMP.first + add) % hashArr.length] == null) {
                 hashArr[(newMP.first + add) % hashArr.length] = newMP;
@@ -74,18 +79,18 @@ public class MyHashtable {
             }
             add++;
         }
-        add = 0;
     }
 
-    private void newHash() {
+    private void grow() {
         MyPair[] oldHash = hashArr;
-        hashArr = new MyPair[hashArr.length * 2];
+        hashArr = new MyPair[(int) (expansivity * hashArr.length)];
         for (MyPair i : oldHash)
             if (i != null)
                 innerAdd(i);
     }
 
     private void innerAdd(MyPair mp) {
+        int add = 0;
         while (true) {
             if (hashArr[(mp.first + add) % hashArr.length] == null) {
                 hashArr[(mp.first + add) % hashArr.length] = mp;
@@ -97,7 +102,5 @@ public class MyHashtable {
             }
             add++;
         }
-        add = 0;
     }
-
 }
