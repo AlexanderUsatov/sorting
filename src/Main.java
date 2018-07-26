@@ -28,18 +28,6 @@ public class Main {
         System.out.println(System.currentTimeMillis() - start + " Usatov-Prokurat sort on my Hashtable");
     }
 
-    static void usatovProkuratSortUsingMyHashTable(Integer[] arr) {
-        MyHashTable mht = new MyHashTable();
-        for (Integer i : arr)
-            mht.add(i);
-        MyPair[] res = mht.getPairs();
-        int ptr = 0;
-        Arrays.sort(res, Comparator.comparingInt(o -> o.first));
-        for (MyPair mp : res)
-            for (int i = 0; i < mp.second; i++)
-                arr[ptr++] = mp.first;
-    }
-
     static void usatovSort(Integer[] arr) {
         TreeSet<MyPair> tree = new TreeSet<>();
         MyPair temp;
@@ -72,6 +60,18 @@ public class Main {
         for (Integer i : hm.keySet())
             for (int j = 0; j < hm.get(i); j++)
                 arr[ptr++] = i;
+    }
+    
+    static void usatovProkuratSortUsingMyHashTable(Integer[] arr) {
+        MyHashTable mht = new MyHashTable();
+        for (Integer i : arr)
+            mht.add(i);
+        MyPair[] res = mht.getPairs();
+        int ptr = 0;
+        Arrays.sort(res, Comparator.comparingInt(o -> o.first));
+        for (MyPair mp : res)
+            for (int i = 0; i < mp.second; i++)
+                arr[ptr++] = mp.first;
     }
 
     static Integer[] generateArr(int size, int a, int b) {
