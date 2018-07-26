@@ -28,8 +28,8 @@ public class Main {
         System.out.println(System.currentTimeMillis() - start + " Usatov-Prokurat sort on my Hashtable");
     }
 
-    static void usatovProkuratSortUsingMyHash(Integer[] arr) {
-        MyHashtable mht = new MyHashtable();
+    static void usatovProkuratSortUsingMyHashTable(Integer[] arr) {
+        MyHashTable mht = new MyHashTable();
         for (Integer i : arr)
             mht.add(i);
         MyPair[] res = mht.getPairs();
