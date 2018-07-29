@@ -5,9 +5,6 @@ classes
 build/
 out/
 /buildSrc/build
-/subprojects/*/build
-/subprojects/docs/src/samples/*/*/build
-/subprojects/internal-android-performance-testing/build-android-libs
 
 # IDEA
 # ----
@@ -32,8 +29,6 @@ out/
 *.project
 *.settings
 /bin
-/subprojects/*/bin
-atlassian-ide-plugin.xml
 .metadata/
 
 # NetBeans
