@@ -35,15 +35,15 @@ open class CompareSortingTestMethods {
     }
 
     @State(Scope.Benchmark)
-    class SortState{
+    open class SortState{
         @Setup
-        fun setUp() {
+        open fun setUp() {
             arrayToSortWith1000Elements = generateArray(1000)
             arrayToSortWith100000Elements = generateArray(100_000)
         }
 
-        var arrayToSortWith1000Elements: Array<out Int> = emptyArray()
-        var arrayToSortWith100000Elements: Array<out Int> = emptyArray()
+        open var arrayToSortWith1000Elements: Array<out Int> = emptyArray()
+        open var arrayToSortWith100000Elements: Array<out Int> = emptyArray()
 
         private fun generateArray(length: Int): Array<out Int> {
             val random = Random(randomSeed)
