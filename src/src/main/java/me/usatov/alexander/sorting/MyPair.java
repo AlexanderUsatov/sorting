@@ -1,3 +1,5 @@
+package me.usatov.alexander.sorting;
+
 public class MyPair implements Comparable<MyPair> {
     public int first;
     public int second;

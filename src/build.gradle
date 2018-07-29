@@ -35,7 +35,7 @@ compileTestKotlin {
     }
 }
 
-mainClassName = "com.imanushin.use.performance.StartKt"
+mainClassName = "me.usatov.alexander.sorting.Main"
 
 task singleJar(type: Jar) {
     manifest {

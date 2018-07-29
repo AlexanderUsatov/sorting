@@ -1,7 +1,4 @@
-package com.imanushin.use.performance.benchmarks
-
-import com.imanushin.use.performance.useNoInline
-import java.util.concurrent.TimeUnit
+package me.usatov.alexander.sorting.benchmarks
 
 import org.openjdk.jmh.annotations.*
 import org.openjdk.jmh.infra.Blackhole
@@ -13,15 +10,15 @@ open class CompareInlineUseVsLambdaUse {
 
     @Benchmark
     fun inlineUse(blackhole: Blackhole) {
-        NoopAutoCloseable(blackhole).use {
+       /* NoopAutoCloseable(blackhole).use {
             blackhole.consume(1)
-        }
+        }*/
     }
 
     @Benchmark
     fun lambdaUse(blackhole: Blackhole) {
-        NoopAutoCloseable(blackhole).useNoInline {
+        /*NoopAutoCloseable(blackhole).useNoInline {
             blackhole.consume(1)
-        }
+        }*/
     }
 }

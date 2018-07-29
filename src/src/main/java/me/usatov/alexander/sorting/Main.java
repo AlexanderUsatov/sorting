@@ -1,3 +1,5 @@
+package me.usatov.alexander.sorting;
+
 import java.util.*;
 
 public class Main {
@@ -24,7 +26,7 @@ public class Main {
         System.out.println(System.currentTimeMillis() - start + " Usatov-Prokurat sort");
 
         start = System.currentTimeMillis();
-        usatovProkuratSortUsingMyHash(a3);
+        usatovProkuratSortUsingHashMap(a3);
         System.out.println(System.currentTimeMillis() - start + " Usatov-Prokurat sort on my Hashtable");
     }
 
@@ -74,7 +76,7 @@ public class Main {
                 arr[ptr++] = mp.first;
     }
 
-    static Integer[] generateArr(int size, int a, int b) {
+    private static Integer[] generateArr(int size, int a, int b) {
         Integer[] arr = new Integer[size];
         for (int i = 0; i < size; i++)
             arr[i] = (int) (Math.random() * (b - a + 1) + a);
