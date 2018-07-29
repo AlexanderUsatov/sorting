@@ -8,7 +8,7 @@ import java.util.*
 
 @BenchmarkMode(Mode.All)
 @Warmup(iterations = 10)
-@Measurement(iterations = 100, batchSize = 10)
+@Measurement(iterations = 100, batchSize = 6)
 open class CompareSortingTestMethods {
     private companion object {
         const val randomSeed = 34855347605451L
