@@ -26,7 +26,7 @@ public class Main {
         System.out.println(System.currentTimeMillis() - start + " Usatov-Prokurat sort");
 
         start = System.currentTimeMillis();
-        usatovProkuratSortUsingHashMap(a3);
+        usatovProkuratSortUsingMyHashTable(a3);
         System.out.println(System.currentTimeMillis() - start + " Usatov-Prokurat sort on my Hashtable");
     }
 
@@ -50,7 +50,7 @@ public class Main {
         }
     }
 
-    static void usatovProkuratSortUsingHashMap(Integer[] arr) {
+    public static void usatovProkuratSortUsingHashMap(Integer[] arr) {
         HashMap<Integer, Integer> hm = new HashMap<>();
         Integer temp;
         for (Integer i : arr) {
@@ -63,8 +63,8 @@ public class Main {
             for (int j = 0; j < hm.get(i); j++)
                 arr[ptr++] = i;
     }
-    
-    static void usatovProkuratSortUsingMyHashTable(Integer[] arr) {
+
+    public static void usatovProkuratSortUsingMyHashTable(Integer[] arr) {
         MyHashTable mht = new MyHashTable();
         for (Integer i : arr)
             mht.add(i);

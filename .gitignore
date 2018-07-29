@@ -1,6 +1,7 @@
 # Gradle
 # ------
 .gradle
+classes
 build/
 out/
 /buildSrc/build

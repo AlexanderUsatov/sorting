@@ -22,6 +22,8 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+    testCompile group: 'io.kotlintest', name: 'kotlintest-runner-junit5', version: '3.1.8'
 }
 
 compileKotlin {
@@ -44,6 +46,10 @@ task singleJar(type: Jar) {
         )
     }
     from { configurations.test.collect { it.isDirectory() ? it : zipTree(it) } } with jar
+}
+
+test{
+    useJUnitPlatform()
 }
 
 // there are several issues with JMH plugin:
