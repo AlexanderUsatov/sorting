@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Main {
 
-
     public static void main(String[] args) {
 
         Integer[] arr = generateArr(10_000_000, 0, 10_000_000);
