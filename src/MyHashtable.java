@@ -54,11 +54,11 @@ public class MyHashTable {
             if (hashArr[(key + add) % hashArr.length] == null) {
                 hashArr[(key + add) % hashArr.length] = new MyPair(key, 1);
                 count++;
-                break;
+                return;
             }
             if (hashArr[(key + add) % hashArr.length].first == key) {
                 hashArr[(key + add) % hashArr.length].second++;
-                break;
+                return;
             }
             add++;
         }
@@ -71,11 +71,11 @@ public class MyHashTable {
             if (hashArr[(newMP.first + add) % hashArr.length] == null) {
                 hashArr[(newMP.first + add) % hashArr.length] = newMP;
                 count++;
-                break;
+                return;
             }
             if (hashArr[(newMP.first + add) % hashArr.length].first == newMP.first) {
                 hashArr[(newMP.first + add) % hashArr.length].second += newMP.second;
-                break;
+                return;
             }
             add++;
         }
@@ -94,11 +94,11 @@ public class MyHashTable {
         while (true) {
             if (hashArr[(mp.first + add) % hashArr.length] == null) {
                 hashArr[(mp.first + add) % hashArr.length] = mp;
-                break;
+                return;
             }
             if (hashArr[(mp.first + add) % hashArr.length].first == mp.first) {
                 hashArr[(mp.first + add) % hashArr.length].second += mp.second;
-                break;
+                return;
             }
             add++;
         }
