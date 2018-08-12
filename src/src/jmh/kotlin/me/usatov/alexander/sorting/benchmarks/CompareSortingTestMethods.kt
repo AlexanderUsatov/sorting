@@ -3,12 +3,11 @@ package me.usatov.alexander.sorting.benchmarks
 import me.usatov.alexander.sorting.Main
 import org.openjdk.jmh.annotations.*
 import org.openjdk.jmh.infra.Blackhole
-import java.util.*
 
 
 @BenchmarkMode(Mode.All)
-@Warmup(iterations = 10)
-@Measurement(iterations = 100, batchSize = 6)
+@Warmup(iterations = 2)
+@Measurement(iterations = 30, batchSize = 1)
 open class CompareSortingTestMethods {
     private companion object {
         const val randomSeed = 34855347605451L
@@ -25,32 +24,32 @@ open class CompareSortingTestMethods {
     }
 
     @Benchmark
-    fun defaultSortOf100000Elements(blackhole: Blackhole, state: SortState) {
-        blackhole.consume(state.arrayToSortWith1000Elements.sort())
+    fun defaultSortOf10000Elements(blackhole: Blackhole, state: SortState) {
+        blackhole.consume(state.arrayToSortWith10000Elements.sort())
     }
 
     @Benchmark
     fun hashMapSortOf100000Elements(blackhole: Blackhole, state: SortState) {
-        blackhole.consume(Main.usatovProkuratSortUsingHashMap(state.arrayToSortWith1000Elements))
+        blackhole.consume(Main.usatovProkuratSortUsingHashMap(state.arrayToSortWith10000Elements))
     }
 
     @State(Scope.Benchmark)
     open class SortState{
+
+        @Param("348553", "65756756", "3658734", "3268345", "456455642", "54642487")
+        var seed: Int = 0
+
         @Setup
         open fun setUp() {
             arrayToSortWith1000Elements = generateArray(1000)
-            arrayToSortWith100000Elements = generateArray(100_000)
+            arrayToSortWith10000Elements = generateArray(10_000)
         }
 
         open var arrayToSortWith1000Elements: Array<out Int> = emptyArray()
-        open var arrayToSortWith100000Elements: Array<out Int> = emptyArray()
+        open var arrayToSortWith10000Elements: Array<out Int> = emptyArray()
 
         private fun generateArray(length: Int): Array<out Int> {
-            val random = Random(randomSeed)
-
-            return (0..length).map {
-                random.nextInt()
-            }.toTypedArray()
+            return Main.generateArr(length, 0, 10000000, seed.toLong())
         }
     }
 }
