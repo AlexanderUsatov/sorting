@@ -37,7 +37,7 @@ open class CompareSortingTestMethods {
     open class SortState{
 
         @Param("348553", "65756756", "3658734", "3268345", "456455642", "54642487")
-        var seed: Int = 0
+        open var seed : Int = 0
 
         @Setup
         open fun setUp() {
