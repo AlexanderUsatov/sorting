@@ -1,10 +1,12 @@
+package me.usatov.alexander.sorting;
+
 import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Integer[] arr = generateArr(10_000_000, 0, 10_000_000);
+        Integer[] arr = generateArr(10_000_000, 0, 10_000_000, 340876);
         Integer[] a1 = arr.clone();
         Integer[] a2 = arr.clone();
         Integer[] a3 = arr.clone();
@@ -27,7 +29,7 @@ public class Main {
         System.out.println(System.currentTimeMillis() - start + " Usatov-Prokurat sort on my Hashtable");
     }
 
-    static void usatovProkuratSortUsingMyHashTable(Integer[] arr) {
+    public static void usatovProkuratSortUsingMyHashTable(Integer[] arr) {
         MyHashTable mht = new MyHashTable();
         for (Integer i : arr)
             mht.add(i);
@@ -59,7 +61,7 @@ public class Main {
         }
     }
 
-    static void usatovProkuratSortUsingHashMap(Integer[] arr) {
+    public static void usatovProkuratSortUsingHashMap(Integer[] arr) {
         HashMap<Integer, Integer> hm = new HashMap<>();
         Integer temp;
         for (Integer i : arr) {
@@ -77,10 +79,11 @@ public class Main {
                 arr[ptr++] = i;
     }
 
-    static Integer[] generateArr(int size, int a, int b) {
+    public static Integer[] generateArr(int size, int a, int b, long seed) {
         Integer[] arr = new Integer[size];
+        Random random = new Random(seed);
         for (int i = 0; i < size; i++)
-            arr[i] = (int) (Math.random() * (b - a + 1) + a);
+            arr[i] = random.nextInt() * (b - a + 1) + a;
         return arr;
     }
 

@@ -1,3 +1,5 @@
+package me.usatov.alexander.sorting;
+
 public class MyHashTable {
 
     private MyPair[] hashArr;
